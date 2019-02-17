@@ -1,10 +1,9 @@
-<?php include "includes/header.php"; ?>
+<?php include "includes/admin_header.php"; ?>
 
     <div id="wrapper">
-         
 
         <!-- Navigation -->
-       <?php include "includes/navigation.php"; ?>
+       <?php include "includes/admin_navigation.php"; ?>
         <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -16,19 +15,7 @@
                             Blank Page
                             <small>Subheading</small>
                         </h1>
-                    <div class="col-xs-6">
-                    <form action="" method="post">
-                    <div class="form_group">
-                    <input class ="form-control" type="text" name="cat_title">
-                        
-                    </div>
-                    <div class="form-group">
-                    <input class ="btn btn-primary" type="submit" name="submit" value="Dodaj Kategorię">
-                        
-                    </div>    
-                        
-                    </form>
-                    </div>
+
                     
                     
                      
@@ -44,4 +31,4 @@
 
 
 
-<?php include "includes/footer.php"; ?>
+<?php include "includes/admin_footer.php"; ?>
