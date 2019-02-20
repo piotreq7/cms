@@ -2,8 +2,8 @@
 -- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Czas generowania: 15 Lut 2019, 20:48
+-- Host: localhost
+-- Czas generowania: 20 Lut 2019, 08:48
 -- Wersja serwera: 10.1.37-MariaDB
 -- Wersja PHP: 7.3.1
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `id` int(3) NOT NULL,
+  `cat_id` int(3) NOT NULL,
   `cat_title` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -37,7 +37,7 @@ CREATE TABLE `categories` (
 -- Zrzut danych tabeli `categories`
 --
 
-INSERT INTO `categories` (`id`, `cat_title`) VALUES
+INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 (1, 'Java'),
 (2, 'Bootstrap'),
 (3, 'php');
@@ -77,7 +77,7 @@ INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`,
 -- Indeksy dla tabeli `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`cat_id`);
 
 --
 -- Indeksy dla tabeli `posts`
@@ -93,7 +93,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT dla tabeli `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cat_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT dla tabeli `posts`
