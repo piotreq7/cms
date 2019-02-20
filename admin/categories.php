@@ -87,7 +87,7 @@
 
         <?php 
 
-
+//ss
     $query = "SELECT * FROM categories";
     $select_categories = mysqli_query($connection,$query);  
 
