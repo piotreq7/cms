@@ -27,6 +27,8 @@
             
                 
 <?php
+    
+    
 if(isset($_GET['source'])){
 $source = $_GET['source'];
 }else {
@@ -35,16 +37,16 @@ $source = $_GET['source'];
 
 switch($source){
 
-case '22';
-echo "ss";
+case 'add_post';
+include "includes/add_post.php";
 break;    
 
 case '22';
-echo "ss";
+echo "22";
 break;
 
 case '22';
-echo "ss";
+echo "22";
 break;
 
 default:
