@@ -41,8 +41,8 @@ case 'add_post';
 include "includes/add_post.php";
 break;    
 
-case '22';
-echo "22";
+case 'edit_post';
+include "includes/edit_post.php";
 break;
 
 case '22';

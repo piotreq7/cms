@@ -2,8 +2,9 @@
 if(isset($_POST['create_post'])){
     
     $post_title = $_POST ['post_title'];
-    $post_author = $_POST ['post_author'];
+    
     $post_category_id = $_POST ['post_category_id'];
+    $post_author = $_POST ['post_author'];
     $post_status = $_POST ['post_status'];
     
     $post_image = $_FILES ['image']['name'];
@@ -17,8 +18,16 @@ if(isset($_POST['create_post'])){
     move_uploaded_file($post_image_temp,"../images/$post_image" );
     
     
-    $query = "INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`)";
-    $query .= "VALUES (NULL, '$post_category_id', '$post_title', '$post_author', '$post_date', '$post_image', '$post_content', '$post_tags', '$post_comment_count', 'draft')";
+    $query = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) ";
+    $query .= " VALUES ({$post_category_id}, '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_comment_count}', '{$post_status}')";
+
+
+    
+    $create_post_query=mysqli_query($connection,$query);
+    
+    confirmQuery($create_post_query);
+    
+    
     
 }
 
@@ -31,14 +40,14 @@ if(isset($_POST['create_post'])){
 
 <div class="form-group">
 
-<labe for="post_title">Post Title</labe>
+<label for="post_title">Post Title</label>
 <input type="text" class="form-control" name="post_title">   
 
 </div>    
 
 <div class="form-group">
 
-<labe for="post_category">Post Category</labe>
+<label for="post_category">Post Category</label>
 <input type="text" class="form-control" name="post_category_id">   
 </div> 
 
@@ -46,27 +55,27 @@ if(isset($_POST['create_post'])){
 
 <div class="form-group">
 
-<labe for="post_author">Post Author</labe>
+<label for="post_author">Post Author</label>
 <input type="text" class="form-control" name="post_author">   
 </div> 
 
 
 <div class="form-group">
 
-<labe for="post_status">Post Status</labe>
+<label for="post_status">Post Status</label>
 <input type="text" class="form-control" name="post_status">   
 </div> 
 
 
 <div class="form-group">
 
-<labe for="post_image">Post Image</labe>
+<label for="post_image">Post Image</label>
 <input type="file" name="image">   
 </div> 
 
 <div class="form-group">
 
-<labe for="post_tags">Post Tags</labe>
+<label for="post_tags">Post Tags</label>
 <input type="text" class="form-control" name="post_tags">   
 </div> 
 
@@ -75,7 +84,7 @@ if(isset($_POST['create_post'])){
 
 <div class="form-group">
 
-<labe for="post_content">Post Content</labe>
+<label for="post_content">Post Content</label>
 <textarea type="text" class="form-control" name="post_content" cols="30" rows="10">   
 </textarea>
 </div> 
