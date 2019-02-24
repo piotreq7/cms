@@ -5,7 +5,7 @@ $the_post_id = $_GET['p_id'];
     
 }
                     global $connection;
-                    $query = "SELECT * FROM posts where post_id='{$the_post_id}'";
+                    $query = "SELECT * FROM posts where post_id=$the_post_id";
                     $select_posts_by_id = mysqli_query($connection,$query);  
                     confirmQuery($select_posts_by_id);
 
@@ -21,7 +21,53 @@ $the_post_id = $_GET['p_id'];
                     $post_comment_count = $row['post_comment_count'];    
                     $post_date = $row['post_date'];
                     }
+        
 
+if(isset($_POST['update_post'])){
+    
+                    $post_author = $_POST['post_author'];  
+                    $post_title = $_POST['post_title'];    
+                    $post_category_id = $_POST['post_category'];
+                    $post_status = $_POST['post_status'];
+                    $post_image = $_FILES['image']['name'];
+                    $post_image_temp = $_FILES['image']['tmp_name'];
+                    $post_tags = $_POST['post_tags'];
+                    $post_content = $_POST['post_content'];    
+
+            move_uploaded_file($post_image_temp,"../images/$post_image" );
+    
+    
+            if(empty($post_image)){
+
+            $query = "SELECT * FROM posts WHERE post_id=$the_post_id";
+
+            $select_image = mysqli_query($connection,$query);  
+            confirmQuery($select_image);
+
+            while($row = mysqli_fetch_assoc($select_image)) {
+            $post_image=$row['post_image'];
+        
+    }}
+    
+    
+    
+
+            $query = "UPDATE posts SET ";
+            $query .= "post_title = '{$post_title}', ";
+            $query .= "post_category_id = '{$post_category_id}', ";
+            $query .= "post_date = now(), ";
+            $query .= "post_author = '{$post_author}', ";
+            $query .= "post_status = '{$post_status}', ";
+            $query .= "post_tags = '{$post_tags}', ";
+            $query .= "post_content = '{$post_content}', ";
+            $query .= "post_image = '{$post_image}' ";
+            $query .= "WHERE post_id = '{$the_post_id}' ";
+
+
+            $update_post = mysqli_query($connection,$query);  
+            confirmQuery($update_post); 
+
+}
 ?>
 
 
@@ -40,11 +86,28 @@ $the_post_id = $_GET['p_id'];
 
 <div class="form-group">
 
-<select name="post_category" id="">
+<?php  //select for default value option
+//                    $query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
+//                    $select_post_categories_id = mysqli_query($connection,$query);  
+//                    confirmQuery($select_post_categories_id);
+//
+//                    while($row = mysqli_fetch_assoc($select_post_categories_id)) {
+//                    $cat_id = $row['cat_id'];
+//                    $cat_title = $row['cat_title'];
+//                    
+//                    echo "";
+//                        
+//                        
+//                    }
+
+?>
+
+
+<select name='post_category' id='' selected=2>
     
 <?php    //listowanie kategori
               
-          
+   
    
             $query = "SELECT * FROM categories";
             $select_all_categories = mysqli_query($connection,$query);  
@@ -53,8 +116,14 @@ $the_post_id = $_GET['p_id'];
             while($row = mysqli_fetch_assoc($select_all_categories)) {
             $cat_id = $row['cat_id'];
             $cat_title = $row['cat_title'];
+                
+            if($post_category_id==$cat_id){
+                echo "<option value='$cat_id' selected>{$cat_title}</option>";
+            }else {
+               echo "<option value='$cat_id'>{$cat_title}</option>"; 
+            }
             
-            echo "<option value='$cat_id'>{$cat_title}</option>";
+           
                 
             
             
@@ -88,7 +157,7 @@ $the_post_id = $_GET['p_id'];
 
 <div class="form-group">
 <img width=100 src="../images/<?php echo $post_image; ?>" alt="image">
-<label for="post_image">Post Image</label>
+<!--<label for="post_image">Post Image</label>-->
 <input type="file" name="image">   
 </div> 
 
@@ -109,7 +178,7 @@ $the_post_id = $_GET['p_id'];
 
 <div class="form-group">
 
-<input type="submit" class="btn btn-primary" name="create_post" value="Publikuj post">   
+<input type="submit" class="btn btn-primary" name="update_post" value="Zmień post">   
 </div> 
 
 
