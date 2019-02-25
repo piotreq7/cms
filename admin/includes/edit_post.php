@@ -37,7 +37,7 @@ if(isset($_POST['update_post'])){
             move_uploaded_file($post_image_temp,"../images/$post_image" );
     
     
-            if(empty($post_image)){
+            if(empty($post_image)){// save curent image
 
             $query = "SELECT * FROM posts WHERE post_id=$the_post_id";
 
@@ -86,29 +86,11 @@ if(isset($_POST['update_post'])){
 
 <div class="form-group">
 
-<?php  //select for default value option
-//                    $query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
-//                    $select_post_categories_id = mysqli_query($connection,$query);  
-//                    confirmQuery($select_post_categories_id);
-//
-//                    while($row = mysqli_fetch_assoc($select_post_categories_id)) {
-//                    $cat_id = $row['cat_id'];
-//                    $cat_title = $row['cat_title'];
-//                    
-//                    echo "";
-//                        
-//                        
-//                    }
 
-?>
-
-
-<select name='post_category' id='' selected=2>
+<select name='post_category' id=''>
     
-<?php    //listowanie kategori
-              
-   
-   
+
+            <?php   
             $query = "SELECT * FROM categories";
             $select_all_categories = mysqli_query($connection,$query);  
             confirmQuery($select_all_categories);
@@ -128,13 +110,16 @@ if(isset($_POST['update_post'])){
             
             
             }
-?>   
+  
     
     
-    
+?>    
    
     
 </select>
+    
+    
+    
 
  
 </div> 

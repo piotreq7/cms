@@ -47,7 +47,7 @@ break;
 
 
 default:
-      include "includes/admin_view_all_posts.php";  
+      include "includes/admin_view_all_comments.php";  
 break;
         
 }

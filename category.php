@@ -11,8 +11,15 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-            <?php    
-            $query = "SELECT * FROM posts";  
+            <?php  
+             if(isset($_GET['category'])){
+                 
+            $post_category_id = $_GET['category'];
+                
+                 
+             }   
+            
+            $query = "SELECT * FROM posts WHERE post_category_id=$post_category_id"; 
                 $select_all_posts = mysqli_query($connection,$query);
                 while ($row=mysqli_fetch_assoc($select_all_posts)){
                 $post_id = $row['post_id'];
@@ -22,7 +29,9 @@
                 $post_date = $row['post_date'];
                 $post_image = $row['post_image'];
                 $post_content = substr($row['post_content'],0,100) ;
-
+//                $post_tags = $row['post_tags'];
+//                $post_comment_count = $row['post_comment_count'];    
+//                $post_status = $row['post_status'];
                    
                ?>
                     
