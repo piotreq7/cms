@@ -54,7 +54,7 @@
                         <a href="./categories.php"><i class="fa fa-fw fa-wrench"></i> Kategorie</a>
                     </li>
                 
-                    <li class="active">
+                    <li class="">
                         <a href="comments.php"><i class="fa fa-fw fa-wrench"></i> Komentarze</a>
                     </li>
                         <li>

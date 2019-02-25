@@ -10,7 +10,6 @@
                         <th>Data</th>
                         <th>Zatwierdz</th>
                         <th>Odrzuć</th>
-                        <th>Edytuj</th>
                         <th>Usuń</th>
                        
                                        
@@ -67,9 +66,9 @@
 //                    echo "<td> $comment_post_id </td>";
                     echo "<td> $comment_date </td>";
 
-                    echo "<td><a href='comments.php?source=edit_post&p_id={$comment_id}'>Zatwierdź</a></td>";   
-                    echo "<td><a href='comments.php?source=edit_post&p_id={$comment_id}'>Odrzuć</a></td>";
-                    echo "<td><a href='comments.php?delete={$comment_id}'>Edytuj</a></td>";
+                    echo "<td><a href='comments.php?aprove={$comment_id}'>Zatwierdź</a></td>";   
+                     echo "<td><a href='comments.php?unaprove={$comment_id}'>Odrzuć</a></td>"; 
+                    
                     echo "<td><a href='comments.php?delete={$comment_id}'>Usuń</a></td>";
                         
                         
@@ -101,17 +100,56 @@
 <?php
 if(isset($_GET['delete'])){
     
-$the_post_id=$_GET['delete'];
+$the_comment_id=$_GET['delete'];
 
-$query = "DELETE FROM posts where post_id= {$the_post_id}";
+$query = "DELETE FROM comments where comment_id= {$the_comment_id}";
 
 $delete_query= mysqli_query($connection,$query);
     
 confirmQuery($delete_query);
-header ("Location: posts.php");
+header ("Location: comments.php");
     
 }
 
 
 ?>
+  
          
+                
+                       
+                              
+                                     
+<?php
+if(isset($_GET['unaprove'])){
+    
+$the_comment_unaprove=$_GET['unaprove'];
+
+$query = "UPDATE comments SET comment_status ='unaproved' WHERE comment_id= $the_comment_unaprove";
+
+$comment_unaprove_query= mysqli_query($connection,$query);
+    
+confirmQuery($comment_unaprove_query);
+header ("Location: comments.php");
+    
+}
+?>
+
+<?php
+if(isset($_GET['aprove'])){
+    
+$the_comment_aprove=$_GET['aprove'];
+
+$query = "UPDATE comments SET comment_status ='aproved' WHERE comment_id= $the_comment_aprove";
+
+$comment_aprove_query= mysqli_query($connection,$query);
+    
+confirmQuery($comment_aprove_query);
+header ("Location: comments.php");
+    
+}
+
+
+
+
+
+?>                                                               
