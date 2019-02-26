@@ -84,7 +84,16 @@ $query .= " VALUES ($the_post_id, '{$comment_author}', '{$comment_email}', '{$co
                     if(!$create_comment){
 
                     die('QUERY FAILED' . mysqli_error($connection));
+                    }
+                        
+$query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
+$query .= "WHERE post_id = $the_post_id"; 
 
+                    $increase_comment_counter=mysqli_query($connection,$query);
+
+                    if(!$increase_comment_counter){
+
+                    die('QUERY FAILED increase_comment_counter' . mysqli_error($connection));                    
                
                     
                     
