@@ -7,6 +7,9 @@
                         <th>Nazwisko</th>
                         <th>Email</th>
                         <th>Rola</th>
+                        <th>Admin</th>
+                        <th>Subscriber</th>
+                        <th>Edytuj</th>
                         <th>Usuń</th>
                                   
                     </tr>
@@ -61,10 +64,11 @@
 //                    echo "<td> $comment_post_id </td>";
 //                    echo "<td> $comment_date </td>";
 //
-//                    echo "<td><a href='comments.php?aprove={$comment_id}'>Zatwierdź</a></td>";   
-//                     echo "<td><a href='comments.php?unaprove={$comment_id}'>Odrzuć</a></td>"; 
-//                    
+                    echo "<td><a href='users.php?change_to_admin={$user_id}'>Zmień na administratora</a></td>";   
+                    echo "<td><a href='users.php?change_to_subscriber={$user_id}'>Zmień na subskrybenta</a></td>"; 
+                    echo "<td><a href='users.php?source=edit_user&edit_user={$user_id}'>Edit</a></td>";  
                     echo "<td><a href='users.php?delete={$user_id}'>Usuń</a></td>";
+                    
 //                        
                         
 //                        
@@ -93,16 +97,16 @@
             
            
 <?php
-if(isset($_GET['delete'])){
+if(isset($_GET['change_to_admin'])){
     
-$the_comment_id=$_GET['delete'];
+$the_user_id=$_GET['change_to_admin'];
 
-$query = "DELETE FROM comments where comment_id= {$the_comment_id}";
+$query = "UPDATE users SET user_role= 'Admin' WHERE user_id = {$the_user_id}";
 
-$delete_query= mysqli_query($connection,$query);
+$change_to_admin_query= mysqli_query($connection,$query);
     
-confirmQuery($delete_query);
-header ("Location: comments.php");
+confirmQuery($change_to_admin_query);
+header ("Location: users.php");
     
 }
 
@@ -113,38 +117,36 @@ header ("Location: comments.php");
                 
                        
                               
-                                     
 <?php
-if(isset($_GET['unaprove'])){
+if(isset($_GET['change_to_subscriber'])){
     
-$the_comment_unaprove=$_GET['unaprove'];
+$the_user_id=$_GET['change_to_subscriber'];
 
-$query = "UPDATE comments SET comment_status ='unaproved' WHERE comment_id= $the_comment_unaprove";
+$query = "UPDATE users SET user_role= 'Subscriber' WHERE user_id = {$the_user_id}";
 
-$comment_unaprove_query= mysqli_query($connection,$query);
+$change_to_subscriber_query= mysqli_query($connection,$query);
     
-confirmQuery($comment_unaprove_query);
-header ("Location: comments.php");
+confirmQuery($change_to_subscriber_query);
+header ("Location: users.php");
+    
+}
+
+
+?>                                                              
+
+
+<?php
+if(isset($_GET['delete'])){
+    
+$the_user_id=$_GET['delete'];
+$query = "DELETE FROM users where user_id= {$the_user_id}";
+$delete_query= mysqli_query($connection,$query);
+    
+confirmQuery($delete_query);
+header ("Location: users.php");
     
 }
 ?>
 
-<?php
-if(isset($_GET['aprove'])){
-    
-$the_comment_aprove=$_GET['aprove'];
-
-$query = "UPDATE comments SET comment_status ='aproved' WHERE comment_id= $the_comment_aprove";
-
-$comment_aprove_query= mysqli_query($connection,$query);
-    
-confirmQuery($comment_aprove_query);
-header ("Location: comments.php");
-    
-}
 
 
-
-
-
-?>                                                               

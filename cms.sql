@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 25 Lut 2019, 15:40
+-- Czas generowania: 27 Lut 2019, 15:21
 -- Wersja serwera: 10.1.37-MariaDB
 -- Wersja PHP: 7.3.1
 
@@ -41,7 +41,8 @@ INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 (25, 'Java'),
 (26, 'Bootstrap'),
 (52, 'PHP'),
-(53, 'UrzÄ…d');
+(53, 'UrzÄ…d'),
+(54, 'Sportowcy');
 
 -- --------------------------------------------------------
 
@@ -64,14 +65,14 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date`) VALUES
-(3, 1, 'autor', 'email@o2.pl', 'komentarz', 'aproved', '2019-02-25'),
-(4, 1, 'fdsdfsd', 'sdfsdff@o2.pl', 'fsdf', 'unaproved', '2019-02-25'),
-(5, 1, 'dfds', 'dsfsfd@o2.pl', 'dasda', 'unaproved', '2019-02-25'),
-(6, 1, 'Karolina', 'karolina@kar.pl', 'Coa bzdura', 'unaproved', '2019-02-25'),
-(7, 4, 'Piotrek', 'kassz@o2.pl', 'Kurza', 'aproved', '2019-02-25'),
-(8, 4, 'J', 'sda@o2.pl', 'koment do 3 postu !', 'aproved', '2019-02-25'),
-(9, 1, 'Test', 'sdas@o2.pl', 'sdasd', 'unaproved', '2019-02-25'),
-(10, 1, 'Test', 'sdas@o2.pl', 'sdasd', 'unaproved', '2019-02-25');
+(19, 5, 'Autor', 'email@o2.pl', 'komenatarz', 'aproved', '2019-02-26'),
+(20, 6, 'Autor', 'sad@o2.pl', 'sdasd', 'aproved', '2019-02-26'),
+(21, 5, 'autor', 'sda@o2.pl', 'drugi komentarz', 'aproved', '2019-02-26'),
+(22, 5, 'Radek', 'asdas@o2.pl', 'Åadna Pani', 'aproved', '2019-02-26'),
+(23, 5, 'Radek', 'asdas@o2.pl', 'Åadna Pani', 'aproved', '2019-02-26'),
+(24, 5, 'Radek', 'asdas@o2.pl', 'Åadna Pani', 'aproved', '2019-02-26'),
+(25, 5, 'ljdfsd', 'dkjf@o2.pl', 'asdasd', 'aproved', '2019-02-26'),
+(26, 7, 'Karolina', 'karolina@karolina.pl', 'WspaniaÅ‚y powrÃ³t !!!', 'aproved', '2019-02-26');
 
 -- --------------------------------------------------------
 
@@ -97,9 +98,35 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`) VALUES
-(1, 52, 'ArtykuÅ‚ pierwszy', 'Piotrrek', '2019-02-25', 'Agassi.jpg', 'TreÅ›Ä‡', 'PHP', 0, 'draft'),
-(3, 25, 'ArtykuÅ‚ drugi', 'Å»ycie', '2019-02-25', 'zzzz.png', 'Co robiÄ‡, jak Å¼yÄ‡ ?', 'Life', 4, 'aproved'),
-(4, 53, 'ArtykuÅ‚ trzeci', 'anonim', '2019-02-25', '', 'Nic siÄ™ dzieje', 'urzÄ…d', 4, '');
+(5, 26, 'Test PHP', 'Ja', '2019-02-27', 'Kayla.jpg', 'Test PHP', 'tags', 6, 'published'),
+(6, 25, 'Post 2', 'Post Author', '2019-02-26', 'Person.jpg', 'Post 2', 'php, java', 1, 'published'),
+(7, 54, 'Serena Wiliams wraca do tenisa', 'Karolina', '2019-02-26', 'serena-williams-nike-ad.jpg', 'Serene Wiliams wraca do tenisa i bÄ™dzie fajnie.', 'Sport, Tenis', 2, 'published');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(3) NOT NULL,
+  `user_username` varchar(255) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
+  `user_firstname` varchar(255) NOT NULL,
+  `user_lastname` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
+  `user_image` text NOT NULL,
+  `user_role` varchar(255) NOT NULL,
+  `user_randSalt` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Zrzut danych tabeli `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_username`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `user_randSalt`) VALUES
+(5, 'Kielich', '123', 'Karolina', 'Kielich', 'kkielich@kielich.pl', '', 'Admin', ''),
+(7, 'Kaczor11', '12311111', 'Donald11', 'KorzÄ™Å„sowski111', 'sad@o222.pl', '', 'Subscriber', '');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -124,6 +151,12 @@ ALTER TABLE `posts`
   ADD PRIMARY KEY (`post_id`);
 
 --
+-- Indeksy dla tabeli `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -131,19 +164,25 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT dla tabeli `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `cat_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT dla tabeli `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `comment_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT dla tabeli `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT dla tabeli `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
