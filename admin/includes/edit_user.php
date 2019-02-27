@@ -61,9 +61,9 @@ if(isset($_POST['edit_user'])){
     
 
     
-    $create_user_query=mysqli_query($connection,$query);
+    $edit_user_query=mysqli_query($connection,$query);
     
-    confirmQuery($create_user_query);
+    confirmQuery($edit_user_query);
     
 }
     
