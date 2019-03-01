@@ -2,7 +2,7 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Login</th>
+                        <th>Username</th>
                         <th>Imię</th>
                         <th>Nazwisko</th>
                         <th>Email</th>

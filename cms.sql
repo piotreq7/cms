@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 27 Lut 2019, 15:21
+-- Czas generowania: 01 Mar 2019, 15:33
 -- Wersja serwera: 10.1.37-MariaDB
 -- Wersja PHP: 7.3.1
 
@@ -98,7 +98,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`) VALUES
-(5, 26, 'Test PHP', 'Ja', '2019-02-27', 'Kayla.jpg', 'Test PHP', 'tags', 6, 'published'),
+(5, 26, 'Test PHP', 'Ja', '2019-03-01', 'Agassi â€” kopia (3).jpg', 'Test PHP', 'tags', 6, 'published'),
 (6, 25, 'Post 2', 'Post Author', '2019-02-26', 'Person.jpg', 'Post 2', 'php, java', 1, 'published'),
 (7, 54, 'Serena Wiliams wraca do tenisa', 'Karolina', '2019-02-26', 'serena-williams-nike-ad.jpg', 'Serene Wiliams wraca do tenisa i bÄ™dzie fajnie.', 'Sport, Tenis', 2, 'published');
 
@@ -126,7 +126,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `user_username`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `user_randSalt`) VALUES
 (5, 'Kielich', '123', 'Karolina', 'Kielich', 'kkielich@kielich.pl', '', 'Admin', ''),
-(7, 'Kaczor11', '12311111', 'Donald11', 'KorzÄ™Å„sowski111', 'sad@o222.pl', '', 'Subscriber', '');
+(7, 'Kaczor1111', '12311111', 'Donald11', 'KorzÄ™Å„sowski111', 'sad@o222.pl', '', 'Subscriber', ''),
+(8, 'kmarczyk', '1234', 'Katarzyna', 'Marczyk', 'marczyk@marczyk.pl', '', 'Admin', '');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -170,7 +171,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT dla tabeli `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `comment_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT dla tabeli `posts`
@@ -182,7 +183,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
