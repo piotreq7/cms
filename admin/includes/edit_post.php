@@ -66,6 +66,7 @@ if(isset($_POST['update_post'])){
 
             $update_post = mysqli_query($connection,$query);  
             confirmQuery($update_post); 
+            echo "<p class='bg-success'> Wpis zaktualizowany: ". "<a href='../post.php?p_id={$the_post_id}'>Wyświetl ten wpis</a> lub <a href='../post.php'>Wyświetl wszystkie wpisy</a></p> "; 
 
 }
 ?>
@@ -135,8 +136,27 @@ if(isset($_POST['update_post'])){
 
 <div class="form-group">
 
-<label for="post_status">Post Status</label>
-<input value = "<?php echo $post_status ;?>" type="text" class="form-control" name="post_status">   
+<select name='post_status' id=''>
+<option value= '<?php echo $post_status; ?>'>Aktualnie ten post jest: <?php echo $post_status; ?></option>
+
+<?php  
+if($post_status =='published'){
+echo "<option value= 'draft'>Draft</option> ";
+
+
+
+}else{
+ echo "<option value= 'published'>Published</option> ";   
+
+
+
+
+}
+?>
+
+<!-- <label for="post_status">Post Status</label> -->
+<!-- <input value = "<?php echo $post_status ;?>" type="text" class="form-control" name="post_status">  -->  
+</select>
 </div> 
 
 
@@ -158,8 +178,13 @@ if(isset($_POST['update_post'])){
 <div class="form-group">
 
 <label for="post_content">Post Content</label>
-<textarea   type="text" class="form-control" name="post_content" cols="30" rows="10"><?php echo $post_content ;?></textarea>
+<textarea   type="text" class="form-control" name="post_content" id="body" cols="30" rows="10"><?php echo $post_content ;?></textarea>
 </div> 
+
+
+
+
+
 
 <div class="form-group">
 

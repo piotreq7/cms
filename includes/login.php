@@ -1,4 +1,5 @@
 <?php include "db.php"; ?>
+<?php session_start(); ?>
 
 <?php 
 
@@ -24,24 +25,30 @@ die ("QUERY FAILED". mysqli_error($connection));
 
 while ($row = mysqli_fetch_array($select_user_query)) {
 	
-	echo $db_user_id = $row ['user_id'];
+	$db_user_id = $row ['user_id'];
 	$db_user_password = $row ['user_password'];
 	$db_user_username = $row ['user_username'];
 	$db_firstname = $row ['user_firstname'];
 	$db_lastname = $row ['user_lastname'];
 	$db_user_role = $row ['user_role'];
 
-// if($username !== $db_user_username && $password !== $db_user_password){
+}
+
+if($username === $db_user_username && $password === $db_user_password){
+
+$_SESSION['username'] = $db_user_username;
+$_SESSION['firstname'] = $db_firstname;
+$_SESSION['lastname'] = $db_lastname;
+$_SESSION['role'] = $db_user_role;
+header("Location: ../admin");
 
 
-// header("Location: ../index.php");
+} else{
 
-// }
-
-
-
+	header("Location: ../index.php");
 
 }
+
 
 }
 

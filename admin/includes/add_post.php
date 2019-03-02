@@ -26,8 +26,10 @@ if(isset($_POST['create_post'])){
     $create_post_query=mysqli_query($connection,$query);
     
     confirmQuery($create_post_query);
+
+   $the_post_id = mysqli_insert_id($connection);
     
-    
+    echo "<p class='bg-success'> Wpis dodano: ". "<a href='../post.php?p_id={$the_post_id}'>Wyświetl ten wpis</a> lub <a href='../post.php'>Wyświetl wszystkie wpisy</a></p> "; 
     
 }
 
@@ -65,6 +67,7 @@ if(isset($_POST['create_post'])){
             }
             
         
+
     
 ?>    
    
@@ -85,9 +88,12 @@ if(isset($_POST['create_post'])){
 
 <div class="form-group">
 
-<label for="post_status">Post Status</label>
-<input type="text" class="form-control" name="post_status">   
-</div> 
+<select name='post_status' id=''>
+<option value= 'draft'>Select option</option> 
+<option value= 'draft'>Draft</option> 
+<option value= 'published'>Published</option>  
+
+
 
 
 <div class="form-group">
@@ -107,9 +113,18 @@ if(isset($_POST['create_post'])){
 
 <div class="form-group">
 
+
+
+
 <label for="post_content">Post Content</label>
-<textarea type="text" class="form-control" name="post_content" cols="30" rows="10"></textarea>
+<textarea type="text" class="form-control" name="post_content" id="body" cols="30" rows="10"></textarea>
 </div> 
+
+
+
+
+
+
 
 <div class="form-group">
 
