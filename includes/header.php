@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php ob_start(); ?>
 <?php session_start(); ?>
+
+
+
+
 
 <head>
 
